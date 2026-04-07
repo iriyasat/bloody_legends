@@ -6,11 +6,15 @@ function DonorRegistration() {
   const [weight, setWeight] = useState('')
 
   const bmi = useMemo(() => {
-    const h = parseFloat(height)
-    const w = parseFloat(weight)
+    const heightInCm = parseFloat(height)
+    const weightInKg = parseFloat(weight)
 
-    if (!h || !w || h <= 0) return ''
-    return (w / (h * h)).toFixed(1)
+    if (!heightInCm || !weightInKg) return ''
+
+    const heightInMeters = heightInCm / 100
+    const bmiValue = weightInKg / (heightInMeters * heightInMeters)
+
+    return bmiValue.toFixed(1)
   }, [height, weight])
 
   return (
@@ -28,11 +32,11 @@ function DonorRegistration() {
               <input
                 className="rounded-xl border p-3"
                 type="number"
-                step="0.01"
-                placeholder="Height (m)"
+                placeholder="Height (cm)"
                 value={height}
                 onChange={(e) => setHeight(e.target.value)}
               />
+
 
               <input
                 className="rounded-xl border p-3"

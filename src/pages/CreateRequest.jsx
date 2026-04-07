@@ -23,7 +23,6 @@ function CreateRequest() {
   const [height, setHeight] = useState('')
   const [weight, setWeight] = useState('')
   const [gender, setGender] = useState('')
-
   const bmi = useMemo(() => {
     const heightInCm = parseFloat(height)
     const weightInKg = parseFloat(weight)
